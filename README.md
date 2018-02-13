@@ -6,6 +6,7 @@ CS5331 Assignment 1 Project Reference Repository
 
 Your objective is to implement a web application that provides the endpoints
 specified here: https://cs5331-assignments.github.io/rest-api-development/.
+
 The project has been packaged in an easy to set-up docker container with the
 skeleton code implemented in Python Flask. You are not restricted in terms of
 which language, web stack, or database you desire to use. However, please note

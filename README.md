@@ -13,7 +13,7 @@ which language, web stack, or database you desire to use. However, please note
 that very limited support can be given to those who decide to veer off the
 beaten path.
 
-You may require modifying the following files/directories:
+You may be required to modify the following files/directories:
 
 - Dockerfile - contains the environment setup scripts to ensure a homogenous
   development environment

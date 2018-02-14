@@ -96,9 +96,10 @@ Please fill out this section with details relevant to your team.
 
 ### Team Members
 
-1. Jeremy Heng
-2. John Galt
-3. Audrey Shida
+1. Member 1 Name
+2. Member 2 Name
+3. Member 3 Name
+4. Member 4 Name
 
 ### Short Answer Questions
 
@@ -125,4 +126,18 @@ Answer: Please replace this sentence with your answer.
 #### Feedback: Is there any other feedback you would like to give?
 
 Answer: Please replace this sentence with your answer.
+
+### Declaration
+
+#### Please declare your individual contributions to the assignment:
+
+1. Member 1 Name
+    - Integrated feature x into component y
+    - Implemented z
+2. Member 2 Name
+    - Wrote the front-end code
+3. Member 3 Name
+    - Designed the database schema
+4. Member 4 Name
+    - Implemented x
 

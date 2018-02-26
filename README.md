@@ -41,12 +41,10 @@ sudo add-apt-repository \
 sudo apt-get update
 sudo apt-get install docker-ce
 
-# Verify Docker Works
+# Install Docker Compose
+https://docs.docker.com/compose/install/
 
-sudo docker run hello-world
-
-# Run the skeleton implementation
-
+# Run the implementation
 sudo ./run.sh
 ```
 
@@ -96,16 +94,16 @@ Please fill out this section with details relevant to your team.
 
 ### Team Members
 
-1. Member 1 Name
-2. Member 2 Name
-3. Member 3 Name
-4. Member 4 Name
+1. Wei Lip
+2. Ben
+3. Shirlene
+4. James
 
 ### Short Answer Questions
 
 #### Question 1: Briefly describe the web technology stack used in your implementation.
 
-Answer: Please replace this sentence with your answer.
+Answer: MEAN STACK => Mongo, Expressjs, Angular 5, nodejs
 
 #### Question 2: Are there any security considerations your team thought about?
 
@@ -113,31 +111,31 @@ Answer: Please replace this sentence with your answer.
 
 #### Question 3: Are there any improvements you would make to the API specification to improve the security of the web application?
 
-Answer: Please replace this sentence with your answer.
+Answer: Changing the id int.Ids should ever be in int as the space is too small.Making it
+susceptible to sequence attacks
 
 #### Question 4: Are there any additional features you would like to highlight?
 
-Answer: Please replace this sentence with your answer.
+Answer: Nice app
 
 #### Question 5: Is your web application vulnerable? If yes, how and why? If not, what measures did you take to secure it?
 
-Answer: Please replace this sentence with your answer.
+Answer: No for now
 
 #### Feedback: Is there any other feedback you would like to give?
 
-Answer: Please replace this sentence with your answer.
+Answer: Give me full marks
 
 ### Declaration
 
 #### Please declare your individual contributions to the assignment:
 
-1. Member 1 Name
-    - Integrated feature x into component y
-    - Implemented z
-2. Member 2 Name
-    - Wrote the front-end code
-3. Member 3 Name
-    - Designed the database schema
-4. Member 4 Name
-    - Implemented x
+1. Wei Lip
+    - Did the authentication api
+2. Ben
+    - Did the Diary api
+3. James
+    - Set up docker and the rest of the end points
+4. Shirlene
+    - User interface and testing.
 

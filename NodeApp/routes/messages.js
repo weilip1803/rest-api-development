@@ -5,7 +5,7 @@ var jwt = require('jsonwebtoken');
 var User = require('../models/user');
 var Message = require('../models/message');
 var userRoute = require('./user');
-var IdCounter = require('../models/counter');
+// var IdCounter = require('../models/counter');
 
 
 router.get('/', function (req, res, next) {
@@ -79,59 +79,55 @@ router.post('/', function (req, res, next) {
 });
 
 router.post('/create', function (req, res, next) {
-    console.log("POSTING");
     var decoded = jwt.decode(userRoute.uuidMap[req.body.token]);
-    IdCounter.find({type: "message"}, function (err, resultArray) {
-        if (err) throw err;
-        console.log(resultArray);
-        var counterResult = resultArray[0];
-        counterResult.counter = counterResult.counter + 1;
-        var newCounter = new IdCounter(counterResult);
-        console.log(counterResult.counter + "wtf");
-        User.findById(decoded.user._id, function (err, user) {
+    // IdCounter.find({type: "message"}, function (err, resultArray) {
+    //     if (err) throw err;
+    //     console.log(resultArray);
+    //     var counterResult = resultArray[0];
+    //     counterResult.counter = counterResult.counter + 1;
+    //     var newCounter = new IdCounter(counterResult);
+    //     console.log(counterResult.counter + "wtf");
+    User.findById(decoded.user._id, function (err, user) {
+        if (err) {
+            console.log("ADD ERROR" + err);
+            return res.status(200).json({
+                "status": false,
+                "error": "Invalid authentication token."
+            });
+        }
+        var message = new Message({
+            title: req.body.title,
+            author: user.fullname,
+            publish_date: new Date().toISOString(),
+            isPublic: req.body.public,
+            text: req.body.text,
+            user: user
+        });
+        user.messages.push(message);
+        user.save();
+        message.save(function (err, result) {
             if (err) {
-                console.log("ADD ERROR" + err);
+                console.log("No error should be here");
                 return res.status(200).json({
                     "status": false,
                     "error": "Invalid authentication token."
                 });
             }
-            var message = new Message({
-                title: req.body.title,
-                author: user.fullname,
-                publish_date: new Date().toISOString(),
-                isPublic: req.body.public,
-                text: req.body.text,
-                idCounter: counterResult.counter,
-                user: user
-            });
-            user.messages.push(message);
-            user.save();
-            message.save(function (err, result) {
-                if (err) {
-                    console.log("No error should be here");
-                    return res.status(200).json({
-                        "status": false,
-                        "error": "Invalid authentication token."
-                    });
-                }
-                // user.messages.push(result);
-                // user.save();
-                newCounter.save();
-                res.status(201).json({
-                    "status": true,
-                    "result": counterResult.counter
-                });
+
+            res.status(201).json({
+                "status": true,
+                "result": result.idCounter
             });
         });
     });
+    // });
 
 });
 router.post('/permission', function (req, res, next) {
     var decoded = jwt.decode(userRoute.uuidMap[req.body.token]);
     console.log(req.body);
     Message.find({idCounter: req.body.id}, function (err, messageArr) {
-        if(!messageArr){
+        if (!messageArr) {
             //This should not happen
             return res.status(200).json({
                 "status": false,
@@ -179,7 +175,7 @@ router.post('/delete', function (req, res, next) {
     // console.log(req.query.token + "   : lol");
     console.log(req.body.id + "      ID");
     Message.find({idCounter: req.body.id}, function (err, messageArr) {
-        if(!messageArr){
+        if (!messageArr) {
             //This should not happen
             return res.status(200).json({
                 "status": false,

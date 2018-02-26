@@ -9,20 +9,20 @@ var mongoose = require('mongoose');
 var messageRoutes = require('./routes/messages');
 var userRoutes = require('./routes/user');
 var app = express();
-var IdCounter = require('./models/counter');
+// var IdCounter = require('./models/counter');
 var dbhost = process.env.DBHOST || 'localhost:27017';
 console.log ("STARTING HERE TEST DB HOST:  " + dbhost);
 mongoose.connect( dbhost + '/node-angular');
 
 
-IdCounter.find({type: "message"}, function (err, resultArray) {
-    if (err) throw err;
-    console.log(resultArray);
-    if(resultArray.length ==0) {
-        var a = new IdCounter({counter: 0, type: "message"});
-        a.save();
-    }
-});
+// IdCounter.find({type: "message"}, function (err, resultArray) {
+//     if (err) throw err;
+//     console.log(resultArray);
+//     if(resultArray.length ==0) {
+//         var a = new IdCounter({counter: 0, type: "message"});
+//         a.save();
+//     }
+// });
 //Change this to the script later
 
 // view engine setup

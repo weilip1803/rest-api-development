@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
 var User = require('./user');
+
+const autoIncrement = require('mongoose-auto-increment');
+autoIncrement.initialize(mongoose.connection);
+
 
 var schema = new Schema({
     title: {type: String, required: true},
@@ -13,6 +16,7 @@ var schema = new Schema({
     user: {type: Schema.Types.ObjectId, ref: 'User', required:true}
 
 });
+schema.plugin(autoIncrement.plugin, { model: 'Message', field: 'idCounter', startAt: 1 });
 
 schema.post('remove', function (message) {
     User.findById(message.user, function (err, user) {

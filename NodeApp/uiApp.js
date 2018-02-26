@@ -13,7 +13,6 @@ mongoose.connect('localhost:27017/node-angular');
 
 
 
-var IdCounter = require('./models/counter');
 //Change this to the script later
 // var a = new IdCounter({counter: 0, type: "message"});
 // a.save();

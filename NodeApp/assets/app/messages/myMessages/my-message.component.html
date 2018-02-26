@@ -1,0 +1,22 @@
+<article class="panel panel-default">
+    <div class="panel-footer">
+        Title:{{ message.title }}
+    </div>
+    <div class="panel-body" style="word-break: break-all">
+        {{ message.text }}
+    </div>
+    <footer class="panel-footer">
+        <div class="author">
+            <span>Author :{{ message.author }}</span>
+            <span style="padding-left: 30px">Date :{{ message.publish_date }}</span>
+            <span style="padding-left: 30px">Public :{{ message.public }}</span>
+        </div>
+        <div class="config">
+            <button *ngIf="!message.public;" (click)="updatePermission(message)" class="btn btn-success">Go Public</button>
+
+            <button *ngIf="message.public;" (click)="updatePermission(message)" class="btn btn-secondary">Go Private</button>
+
+            <a (click)="onDelete()">Delete</a>
+        </div>
+    </footer>
+</article>

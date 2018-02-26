@@ -1,0 +1,21 @@
+version: '3' # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+  database: # name of the third service
+    image: mongo # specify image to build container from
+    #ports: DO NOT EXPOSE THE DATA BASE PORT TO THE PUBLIC
+    restart: on-failure
+  express: #name of the second service
+    build: NodeApp # specify the directory of the Dockerfile
+    ports:
+      - "80:3000" #specify ports forewarding
+      - "8080:8080"
+    environment:
+        - DBHOST=mongodb://database
+    depends_on:
+      - database
+    restart: on-failure
+    links:
+        - database # link this service to the database servic
+
